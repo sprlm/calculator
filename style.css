@@ -1,0 +1,76 @@
+html {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #eee;
+    height: 100%;
+    margin: 0;
+}
+
+button {
+    width: 100px;
+    height: 80px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 24px;
+    transition: 0.2s;
+}
+
+button:hover {
+    filter: brightness(90%);
+}
+
+#container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#display {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: flex-end;
+    background-color: #fff;
+    width: 400px;
+    height: 100px;
+    padding-right: 12px;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 48px;
+    font-weight: bold;
+}
+
+#equals {
+    width: 200px;
+    height: 80px;
+    background-color: #80CEE1;
+}
+
+#clear, #backspace, #percent, 
+#divide, #multiply, #subtract,
+#add, #decimal {
+    background-color: #ddd;
+}
+
+#num-0, #num-1, #num-2,
+#num-3, #num-4, #num-5,
+#num-6, #num-7, #num-8,
+#num-9 {
+    background-color: #ccc;
+}
