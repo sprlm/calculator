@@ -59,22 +59,33 @@ function inputOperator(operator) {
     display.textContent = displayContents;
 }
 
+function clear() {
+    prevNum = null;
+    prevOperator = null;
+    displayContents = '';
+
+    display.textContent = displayContents;
+}
+
 let prevNum = null;
 let prevOperator = null;
 let displayContents = '';
 
 const display = document.querySelector('#display');
-const numberButtons = document.querySelectorAll('.number');
-const operatorButtons = document.querySelectorAll('.operator');
 
+const numberButtons = document.querySelectorAll('.number');
 numberButtons.forEach(button => {
     button.addEventListener('click', (e) => {
         inputNumber(e.target.textContent);
     });
 });
 
+const operatorButtons = document.querySelectorAll('.operator');
 operatorButtons.forEach(button => {
     button.addEventListener('click', (e) => {
         inputOperator(e.target.textContent);
     });
 });
+
+const clearButton = document.querySelector('#clear');
+clearButton.addEventListener('click', clear);
