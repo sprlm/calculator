@@ -31,20 +31,50 @@ function operate(num1, num2, operator) {
     }
 }
 
-function displayNumber(num) {
-    if (displayContents.length < 12) {
-        displayContents += num;
+function lastCharIsOperator(str) {
+    return (str.slice(-1) === '÷' || str.slice(-1) === 'x' ||
+            str.slice(-1) === '-' || str.slice(-1) === '+');
+}
+
+function inputNumber(num) {
+    if (lastCharIsOperator(displayContents)) {
+        prevNum = displayContents.slice(0, -1);
+        prevOperator = displayContents.slice(-1);
+        displayContents = num;
+    } else {
+        if (displayContents.length < 12) {
+            displayContents += num;
+        }
     }
     display.textContent = displayContents;
 }
 
+function inputOperator(operator) {
+    if (lastCharIsOperator(displayContents)) {
+        displayContents = displayContents.slice(0,-1) + operator;
+    } else {
+        displayContents += operator;
+    }
+
+    display.textContent = displayContents;
+}
+
+let prevNum = null;
+let prevOperator = null;
 let displayContents = '';
 
 const display = document.querySelector('#display');
-const buttons = document.querySelectorAll('.number');
+const numberButtons = document.querySelectorAll('.number');
+const operatorButtons = document.querySelectorAll('.operator');
 
-buttons.forEach(button => {
+numberButtons.forEach(button => {
     button.addEventListener('click', (e) => {
-        displayNumber(e.target.textContent);
+        inputNumber(e.target.textContent);
     });
-})
+});
+
+operatorButtons.forEach(button => {
+    button.addEventListener('click', (e) => {
+        inputOperator(e.target.textContent);
+    });
+});
