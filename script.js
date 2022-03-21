@@ -1,5 +1,5 @@
 function add(num1, num2) {
-    return num1 + num2;
+    return +num1 + +num2;
 }
 
 function subtract(num1, num2) {
@@ -22,10 +22,10 @@ function operate(num1, num2, operator) {
         case '-':
             return subtract(num1, num2);
             break;
-        case '*':
+        case 'x':
             return multiply(num1, num2);
             break;
-        case '/':
+        case '÷':
             return divide(num1, num2);
             break;
     }
@@ -67,6 +67,16 @@ function clear() {
     display.textContent = displayContents;
 }
 
+function solve() {
+    if (prevNum !== null && prevOperator !== null && displayContents !== '') {
+        displayContents = operate(prevNum, displayContents, prevOperator);
+        prevOperator = null;
+        prevNum = displayContents;
+
+        display.textContent = displayContents;
+    }
+}
+
 let prevNum = null;
 let prevOperator = null;
 let displayContents = '';
@@ -89,3 +99,6 @@ operatorButtons.forEach(button => {
 
 const clearButton = document.querySelector('#clear');
 clearButton.addEventListener('click', clear);
+
+const equalsButton = document.querySelector('#equals');
+equalsButton.addEventListener('click', solve);
