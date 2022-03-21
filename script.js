@@ -30,3 +30,21 @@ function operate(num1, num2, operator) {
             break;
     }
 }
+
+function displayNumber(num) {
+    if (displayContents.length < 12) {
+        displayContents += num;
+    }
+    display.textContent = displayContents;
+}
+
+let displayContents = '';
+
+const display = document.querySelector('#display');
+const buttons = document.querySelectorAll('.number');
+
+buttons.forEach(button => {
+    button.addEventListener('click', (e) => {
+        displayNumber(e.target.textContent);
+    });
+})
