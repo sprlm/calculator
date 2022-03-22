@@ -81,6 +81,11 @@ function solve() {
         } else {
             displayContents = operate(prevNum, displayContents, prevOperator);
             displayContents = Math.round(displayContents * 10000) / 10000;
+
+            if (displayContents.toString().length > 12) {
+                displayContents = displayContents.toExponential(6);
+            }
+
             displayContents = displayContents.toString();
 
             prevOperator = null;
