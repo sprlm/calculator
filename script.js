@@ -76,14 +76,18 @@ function clear() {
 
 function solve() {
     if (solveInputsExist()) {
-        displayContents = operate(prevNum, displayContents, prevOperator);
-        displayContents = Math.round(displayContents * 10000) / 10000;
-        displayContents = displayContents.toString();
+        if (!isFinite(operate(prevNum, displayContents, prevOperator))) {
+            alert(`Uh oh! You almost divided by zero there, bud.`);
+        } else {
+            displayContents = operate(prevNum, displayContents, prevOperator);
+            displayContents = Math.round(displayContents * 10000) / 10000;
+            displayContents = displayContents.toString();
 
-        prevOperator = null;
-        prevNum = displayContents;
+            prevOperator = null;
+            prevNum = displayContents;
 
-        display.textContent = displayContents;
+            display.textContent = displayContents;
+        }
     }
 }
 
