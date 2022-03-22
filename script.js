@@ -112,6 +112,14 @@ function getPercent() {
     }
 }
 
+function backspace() {
+    if (displayContents !== '') {
+        displayContents = displayContents.slice(0,-1);
+    }
+
+    display.textContent = displayContents;
+}
+
 let prevNum = null;
 let prevOperator = null;
 let displayContents = '';
@@ -140,3 +148,6 @@ equalsButton.addEventListener('click', solve);
 
 const percentButton = document.querySelector('#percent');
 percentButton.addEventListener('click', getPercent);
+
+const backspaceButton = document.querySelector('#backspace');
+backspaceButton.addEventListener('click', backspace);
