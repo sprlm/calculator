@@ -120,6 +120,18 @@ function backspace() {
     display.textContent = displayContents;
 }
 
+function decimal() {
+    if (lastCharIsOperator(displayContents)) {
+        prevNum = displayContents.slice(0, -1);
+        prevOperator = displayContents.slice(-1);
+        displayContents = '.';
+    } else if (!displayContents.includes('.')) {
+        displayContents += '.';
+    }
+    
+    display.textContent = displayContents;
+}
+
 let prevNum = null;
 let prevOperator = null;
 let displayContents = '';
@@ -151,3 +163,7 @@ percentButton.addEventListener('click', getPercent);
 
 const backspaceButton = document.querySelector('#backspace');
 backspaceButton.addEventListener('click', backspace);
+
+const decimalButton = document.querySelector('#decimal');
+decimalButton.addEventListener('click', decimal);
+
