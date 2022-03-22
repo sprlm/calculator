@@ -76,7 +76,10 @@ function clear() {
 
 function solve() {
     if (prevNum !== null && prevOperator !== null && displayContents !== '') {
-        displayContents = operate(prevNum, displayContents, prevOperator).toString();
+        displayContents = operate(prevNum, displayContents, prevOperator);
+        displayContents = Math.round(displayContents * 10000) / 10000;
+        displayContents = displayContents.toString();
+
         prevOperator = null;
         prevNum = displayContents;
 
