@@ -128,8 +128,35 @@ function decimal() {
     } else if (!displayContents.includes('.')) {
         displayContents += '.';
     }
-    
+
     display.textContent = displayContents;
+}
+
+function getKeyPress(e) {
+    let key = e.code;
+    let shiftHeld = e.shiftKey;
+
+    if (shiftHeld && key === 'Digit5') {
+        getPercent();
+    } else if (shiftHeld && key === 'Equal') {
+        inputOperator('+');
+    } else if ((shiftHeld && key === 'Digit8') || key === 'KeyX') {
+        inputOperator('x');
+    } else if (key.slice(0, -1) === 'Digit') {
+        inputNumber(key.slice(-1));
+    } else if (key === 'Escape') {
+        clear();
+    } else if (key === 'Backspace') {
+        backspace();
+    } else if (key === 'Slash') {
+        inputOperator('÷');
+    } else if (key === 'Minus') {
+        inputOperator('-');
+    } else if (key === 'Period') {
+        decimal();
+    } else if (key === 'Equal' || key === 'Enter') {
+        solve();
+    }
 }
 
 let prevNum = null;
@@ -167,3 +194,4 @@ backspaceButton.addEventListener('click', backspace);
 const decimalButton = document.querySelector('#decimal');
 decimalButton.addEventListener('click', decimal);
 
+window.addEventListener('keydown', getKeyPress);
