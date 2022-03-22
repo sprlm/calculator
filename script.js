@@ -37,7 +37,7 @@ function lastCharIsOperator(str) {
 }
 
 function solveInputsExist() {
-    return prevNum !== null && prevOperator !== null && displayContents;
+    return prevNum !== null && prevOperator !== null && displayContents !== '';
 }
 
 function inputNumber(num) {
@@ -75,7 +75,7 @@ function clear() {
 }
 
 function solve() {
-    if (prevNum !== null && prevOperator !== null && displayContents !== '') {
+    if (solveInputsExist()) {
         displayContents = operate(prevNum, displayContents, prevOperator);
         displayContents = Math.round(displayContents * 10000) / 10000;
         displayContents = displayContents.toString();
