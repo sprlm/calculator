@@ -83,7 +83,7 @@ function solve() {
             displayContents = Math.round(displayContents * 10000) / 10000;
 
             if (displayContents.toString().length > 12) {
-                displayContents = displayContents.toExponential(6);
+                displayContents = parseFloat(displayContents).toExponential(6);
             }
 
             displayContents = displayContents.toString();
@@ -93,6 +93,22 @@ function solve() {
 
             display.textContent = displayContents;
         }
+    }
+}
+
+function getPercent() {
+    if (displayContents !== '') {
+        if (lastCharIsOperator(displayContents)) {
+            displayContents = displayContents.slice(0,-1);
+        }
+        
+        if ((displayContents / 100).toString().length > 12) {
+            displayContents = parseFloat(displayContents/100).toExponential(6).toString();
+        } else {
+            displayContents = (displayContents / 100).toString()
+        }
+
+        display.textContent = displayContents;
     }
 }
 
@@ -121,3 +137,6 @@ clearButton.addEventListener('click', clear);
 
 const equalsButton = document.querySelector('#equals');
 equalsButton.addEventListener('click', solve);
+
+const percentButton = document.querySelector('#percent');
+percentButton.addEventListener('click', getPercent);
