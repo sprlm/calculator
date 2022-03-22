@@ -36,6 +36,10 @@ function lastCharIsOperator(str) {
             str.slice(-1) === '-' || str.slice(-1) === '+');
 }
 
+function solveInputsExist() {
+    return prevNum !== null && prevOperator !== null && displayContents;
+}
+
 function inputNumber(num) {
     if (lastCharIsOperator(displayContents)) {
         prevNum = displayContents.slice(0, -1);
@@ -52,6 +56,9 @@ function inputNumber(num) {
 function inputOperator(operator) {
     if (lastCharIsOperator(displayContents)) {
         displayContents = displayContents.slice(0,-1) + operator;
+    } else if (solveInputsExist()) {
+        solve();
+        displayContents += operator;
     } else {
         displayContents += operator;
     }
@@ -69,7 +76,7 @@ function clear() {
 
 function solve() {
     if (prevNum !== null && prevOperator !== null && displayContents !== '') {
-        displayContents = operate(prevNum, displayContents, prevOperator);
+        displayContents = operate(prevNum, displayContents, prevOperator).toString();
         prevOperator = null;
         prevNum = displayContents;
 
